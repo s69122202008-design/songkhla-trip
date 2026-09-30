@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ตั๋วเดินทาง — ไปสงขลา</title>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@400;500&family=Noto+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="shell-header" class="topbar"></header>
+
+  <main class="wrap">
+    <div class="pagehead">
+      <h1>สรุปค่าโดยสารและตั๋วเดินทาง</h1>
+      <div class="card routebar" id="routebar"></div>
+    </div>
+
+    <div id="empty" class="card empty-state block" hidden>
+      <h2>ยังไม่มีเส้นทางสำหรับออกตั๋ว</h2>
+      <p style="margin-inline:auto">เลือกต้นทางและปลายทางที่หน้าค้นหาก่อน</p>
+      <a class="btn gold" href="index.html">ไปหน้าค้นหา</a>
+    </div>
+
+    <div id="content">
+      <section class="block" aria-labelledby="f-h">
+        <h2 id="f-h">ค่าโดยสารแยกตามช่วง</h2>
+        <div class="tablewrap" style="max-height:none">
+          <table>
+            <thead><tr><th>ช่วง</th><th>โหมดเดินทาง</th><th>เส้นทาง</th><th class="num">เวลา (นาที)</th><th class="num">ค่าโดยสาร (บาท)</th></tr></thead>
+            <tbody id="fares"></tbody>
+            <tfoot><tr><td colspan="3">ยอดรวมทั้งหมด = Σ Weight ของทุก Edge บน Shortest Path</td><td class="num" id="sumTime"></td><td class="num" id="sumFare"></td></tr></tfoot>
+          </table>
+        </div>
+        <p class="checks small" id="check" style="margin-top:10px"></p>
+        <div class="noprint" style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn gold" id="buy" type="button">ซื้อตั๋วเที่ยวนี้</button>
+          <a class="btn ghost" id="back" href="#">กลับไปดูรายละเอียด</a>
+        </div>
+      </section>
+
+      <section class="block" id="ticketSec" aria-labelledby="t-h" hidden>
+        <h2 id="t-h">ตั๋วของคุณ</h2>
+        <div class="ticket" id="ticket">
+          <div class="main">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+              <img src="assets/logo.svg" alt="" width="40" height="40">
+              <b style="font:500 1.2rem var(--font-head)">ไปสงขลา e-Ticket</b>
+            </div>
+            <div class="small muted" id="tDate"></div>
+            <div style="font:500 1.3rem var(--font-head);margin:6px 0 10px" id="tRoute"></div>
+            <ul class="infolist" id="tInfo"></ul>
+          </div>
+          <div class="stub">
+            <canvas id="qr" width="200" height="200" role="img" aria-label="QR จำลองสำหรับสาธิต"></canvas>
+            <div class="code" id="tCode"></div>
+            <div class="small muted">QR จำลอง สแกนใช้งานจริงไม่ได้</div>
+          </div>
+        </div>
+        <div class="noprint" style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn" type="button" id="print">พิมพ์ตั๋ว</button>
+          <a class="btn ghost" href="index.html">วางแผนทริปใหม่</a>
+        </div>
+        <p class="notice" style="margin-top:14px">ตั๋วนี้เป็นตัวอย่างสำหรับสาธิตเท่านั้น ข้อมูลเวลาและค่าโดยสารเป็นข้อมูลจำลอง ไม่ใช่ตั๋วใช้งานจริง</p>
+      </section>
+    </div>
+  </main>
+
+  <footer id="shell-footer" class="site-foot"></footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/algorithms.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/ticket.js"></script>
+</body>
+</html>

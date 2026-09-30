@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ค้นหาเส้นทาง — ไปสงขลา</title>
+  <meta name="description" content="วางแผนเที่ยวสงขลาและหาดใหญ่ด้วย Graph Theory และ Tree">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@400;500&family=Noto+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="shell-header" class="topbar"></header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div>
+        <h1>วันนี้จะไปสงขลาที่ไหน?</h1>
+        <p class="lead">เลือกจุดเริ่มต้นและสถานที่ที่อยากไป ระบบจะคำนวณเส้นทางที่เร็วที่สุด ประหยัดที่สุด
+          และคุ้มที่สุดให้ พร้อมออกตั๋วตัวอย่างสำหรับทริปหาดใหญ่–สงขลา</p>
+      </div>
+      <img src="assets/hero.svg" alt="ภาพประกอบ: ตึกแถวเมืองเก่าสงขลา เขาตังกวน และนางเงือกทองริมหาดสมิหลา" width="640" height="440">
+    </section>
+
+    <!-- ฟอร์มค้นหา -->
+    <section class="card block" aria-labelledby="search-h">
+      <h2 id="search-h">ค้นหาเส้นทาง</h2>
+      <div class="search">
+        <button class="field" id="f-from" type="button">
+          <span class="lbl"><span class="dot a"></span>ต้นทาง</span>
+          <span class="val empty">เลือกสถานที่ต้นทาง</span>
+        </button>
+        <button class="swap" id="swap" type="button" aria-label="สลับต้นทางและปลายทาง">⇄</button>
+        <button class="field" id="f-to" type="button">
+          <span class="lbl"><span class="dot b"></span>ปลายทาง</span>
+          <span class="val empty">เลือกสถานที่ปลายทาง</span>
+        </button>
+      </div>
+      <div class="search-foot">
+        <div>
+          <div class="small muted" style="margin-bottom:6px">เส้นทางยอดนิยม</div>
+          <div class="chips" id="popular"></div>
+        </div>
+        <div style="text-align:right">
+          <div class="small muted" id="hint" style="min-height:1.6em"></div>
+          <a class="btn gold" id="go" href="#" aria-disabled="true">ค้นหาเส้นทาง</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tree -->
+    <section class="block" aria-labelledby="tree-h">
+      <h2 id="tree-h">ต้นไม้หมวดหมู่สถานที่ (Tree)</h2>
+      <p>สถานที่ท่องเที่ยวถูกจัดเป็น <b>ต้นไม้มีราก 4 ระดับ</b> (Level 0–3) — หน้าต่างเลือกต้นทาง/ปลายทางด้านบน
+        คือการเดิน <b>Path จาก Root ลงไปหา Leaf</b> ทีละชั้น ส่วนสถานที่ที่เป็น Leaf ทุกแห่งคือ Vertex ในกราฟเส้นทางของหน้า 2–3
+        ลองคลิกโหนดเพื่อดู Parent / Child / Path หรือกดปุ่มเพื่อดู Tree Traversal</p>
+
+      <div class="legend" aria-hidden="true">
+        <span><i style="background:#F4C95D;border-color:#c49a1d"></i>Root</span>
+        <span><i style="background:#D3E9EA;border-color:#14808B"></i>Parent (Internal node)</span>
+        <span><i style="background:#fff;border-color:#E2553B"></i>Leaf = สถานที่</span>
+        <span><i style="background:#fff;border-color:#2F5D9E"></i>โหนดบน Path ที่เลือก</span>
+      </div>
+      <div class="tabs noprint" role="group" aria-label="Tree Traversal">
+        <button type="button" data-trav="pre">Preorder</button>
+        <button type="button" data-trav="post">Postorder</button>
+        <button type="button" data-trav="bfs">BFS (ทีละระดับ)</button>
+        <button type="button" data-trav="clear">ล้าง</button>
+      </div>
+      <div class="treebox"><svg id="tree" aria-label="ต้นไม้หมวดหมู่สถานที่ท่องเที่ยวสงขลา" role="group"></svg></div>
+      <div class="seq" id="seq" aria-live="polite">กดปุ่ม Preorder / Postorder / BFS เพื่อดูลำดับการเยี่ยมชมโหนด</div>
+
+      <div class="twocol" style="margin-top:20px">
+        <div class="card" id="info" aria-live="polite"></div>
+        <div class="card">
+          <h3>Tree นี้แทนโครงสร้างอะไร?</h3>
+          <p><b>แทน "หมวดหมู่ของสถานที่ท่องเที่ยว"</b> — ลูกแต่ละตัวเป็นการแบ่งย่อยของโหนดแม่ เช่น
+            เที่ยวสงขลา → ทะเลและธรรมชาติ → ชายทะเลสงขลา → หาดสมิหลา</p>
+          <p class="small muted" style="margin:0">Tree ไม่มีวงจร และระหว่าง Root กับ Leaf ใด ๆ มี Path เพียงเส้นเดียว
+            จึงเหมาะกับข้อมูลที่แบ่งเป็นลำดับชั้น ส่วนการเดินทางที่มีหลายทางเลือกใช้ Graph แทน</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="shell-footer" class="site-foot"></footer>
+
+  <!-- หน้าต่างเลือกสถานที่: ไล่จาก Root ลงไปหา Leaf -->
+  <dialog id="picker" class="picker" aria-labelledby="picker-title">
+    <div class="picker-head">
+      <div class="row">
+        <h3 id="picker-title" style="margin:0">เลือกต้นทาง</h3>
+        <span>
+          <button class="btn ghost small" type="button" id="picker-back">ย้อนกลับ</button>
+          <button class="btn ghost small" type="button" id="picker-close">ปิด</button>
+        </span>
+      </div>
+      <div class="crumbs" id="crumbs"></div>
+    </div>
+    <ul class="picker-list" id="picker-list"></ul>
+    <div class="picker-foot" id="picker-foot"></div>
+  </dialog>
+
+  <script src="js/data.js"></script>
+  <script src="js/algorithms.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>เลือกเส้นทาง — ไปสงขลา</title>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@400;500&family=Noto+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="shell-header" class="topbar"></header>
+
+  <main class="wrap">
+    <div class="pagehead">
+      <h1>เลือกเส้นทางที่ใช่</h1>
+      <div class="card routebar" id="routebar"></div>
+    </div>
+
+    <div id="empty" class="card empty-state block" hidden>
+      <h2>ยังไม่ได้เลือกต้นทางและปลายทาง</h2>
+      <p style="margin-inline:auto">กลับไปเลือกสถานที่ทั้งสองจุดก่อน ระบบจึงจะคำนวณเส้นทางให้ได้</p>
+      <a class="btn gold" href="index.html">ไปหน้าค้นหา</a>
+    </div>
+
+    <div id="content">
+      <section class="block" aria-labelledby="r-h">
+        <h2 id="r-h">เส้นทางที่ Dijkstra แนะนำ</h2>
+        <div class="routes" id="routes"></div>
+        <p class="small muted" id="dupnote" style="margin-top:14px"></p>
+      </section>
+
+      <section class="block" aria-labelledby="g-h">
+        <h2 id="g-h">Weighted Graph ของระบบ</h2>
+        <div class="defs" id="defs"></div>
+      </section>
+
+      <section class="block" aria-labelledby="d-h">
+        <h2 id="d-h">Dijkstra คิดอย่างไร?</h2>
+        <p>ตารางนี้แสดงการทำงานทีละรอบ: เลือกจุดที่มีค่าต่ำสุดและยังไม่ถูกปิด → ตรวจ Neighbor → ถ้าเจอทางที่ถูกกว่าให้ปรับค่า (Relax)
+          อัลกอริทึมตัวเดียวกันให้คำตอบต่างกันเมื่อนิยาม Weight ต่างกัน</p>
+        <div class="tabs" role="tablist" id="tabs"></div>
+        <p id="formula" class="small"></p>
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th class="num">รอบ</th><th>จุดที่เลือก (ค่าต่ำสุด)</th><th class="num">ค่าสะสม</th><th>Relax (ปรับค่า Neighbor)</th></tr></thead>
+            <tbody id="trace"></tbody>
+          </table>
+        </div>
+        <p id="traceResult" style="margin-top:12px"></p>
+      </section>
+
+      <section class="block" aria-labelledby="a-h">
+        <h2 id="a-h">Adjacency List ใน JavaScript</h2>
+        <p>กราฟเก็บเป็น Adjacency List: แต่ละ Vertex เก็บรายการ Edge ที่ออกจากตัวเอง (ในโค้ดจริงแต่ละ Edge มี Weight ติดมาด้วย)</p>
+        <pre class="code" id="adj"></pre>
+      </section>
+    </div>
+  </main>
+
+  <footer id="shell-footer" class="site-foot"></footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/algorithms.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/routes.js"></script>
+</body>
+</html>

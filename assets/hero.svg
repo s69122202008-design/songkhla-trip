@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 440" role="img" aria-label="ภาพประกอบ: ตึกแถวเมืองเก่าสงขลา เขาตังกวน และนางเงือกทองริมหาดสมิหลา">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FCE7B0"/>
+      <stop offset="1" stop-color="#E4F1EE"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1B8C97"/>
+      <stop offset="1" stop-color="#0B4F5C"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="440" rx="28" fill="url(#sky)"/>
+  <circle cx="512" cy="108" r="56" fill="#F4C95D"/>
+  <circle cx="512" cy="108" r="76" fill="#F4C95D" opacity=".25"/>
+
+  <!-- เขาตังกวน -->
+  <path d="M0 312 Q70 170 190 228 Q260 262 330 300 L330 330 L0 330Z" fill="#7FB7A4"/>
+  <path d="M0 330 Q90 240 210 268 Q280 286 340 322 L340 340 L0 340Z" fill="#5E9C8B"/>
+  <g transform="translate(118 168)">
+    <path d="M0 30 L8 6 L16 30Z" fill="#FBF3D5"/>
+    <path d="M-6 30 H22 V34 H-6Z" fill="#E9D79C"/>
+    <rect x="7.4" y="-6" width="1.2" height="12" fill="#FBF3D5"/>
+  </g>
+
+  <!-- ทะเล -->
+  <rect y="318" width="640" height="122" fill="url(#sea)"/>
+  <path d="M0 350 q20 -10 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0" fill="none" stroke="#7FC4C8" stroke-width="3" opacity=".7"/>
+  <path d="M0 384 q20 -10 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0" fill="none" stroke="#FBF3D5" stroke-width="3" opacity=".45"/>
+  <path d="M0 418 q20 -10 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0" fill="none" stroke="#7FC4C8" stroke-width="3" opacity=".5"/>
+
+  <!-- เกาะหนู เกาะแมว -->
+  <path d="M352 336 Q366 310 386 322 Q398 330 404 336Z" fill="#6E7F73"/>
+  <path d="M420 338 Q432 318 452 326 Q462 332 466 338Z" fill="#7C8E80"/>
+
+  <!-- ตึกแถวเมืองเก่า -->
+  <g>
+    <rect x="290" y="220" width="86" height="120" fill="#F4C95D"/>
+    <path d="M290 220 L333 196 L376 220Z" fill="#B5472F"/>
+    <rect x="302" y="240" width="20" height="36" rx="10" fill="#2F5D9E"/>
+    <rect x="344" y="240" width="20" height="36" rx="10" fill="#2F5D9E"/>
+    <rect x="308" y="296" width="50" height="44" rx="25" fill="#7A4B2A"/>
+
+    <rect x="376" y="236" width="80" height="104" fill="#F2A99C"/>
+    <path d="M376 236 L416 214 L456 236Z" fill="#B5472F"/>
+    <rect x="388" y="256" width="18" height="32" rx="9" fill="#2F5D9E"/>
+    <rect x="426" y="256" width="18" height="32" rx="9" fill="#2F5D9E"/>
+    <rect x="395" y="304" width="42" height="36" rx="21" fill="#7A4B2A"/>
+
+    <rect x="456" y="226" width="86" height="114" fill="#8DB8E0"/>
+    <path d="M456 226 L499 202 L542 226Z" fill="#B5472F"/>
+    <rect x="468" y="246" width="20" height="34" rx="10" fill="#FBF3D5"/>
+    <rect x="510" y="246" width="20" height="34" rx="10" fill="#FBF3D5"/>
+    <rect x="474" y="298" width="50" height="42" rx="25" fill="#7A4B2A"/>
+
+    <rect x="542" y="244" width="70" height="96" fill="#EADFBE"/>
+    <path d="M542 244 L577 224 L612 244Z" fill="#B5472F"/>
+    <rect x="552" y="262" width="16" height="28" rx="8" fill="#2F5D9E"/>
+    <rect x="586" y="262" width="16" height="28" rx="8" fill="#2F5D9E"/>
+    <rect x="558" y="304" width="38" height="36" rx="19" fill="#7A4B2A"/>
+  </g>
+
+  <!-- หาดทราย -->
+  <path d="M0 338 Q160 326 300 340 L640 340 L640 362 Q300 372 0 356Z" fill="#EBD9A6"/>
+
+  <!-- นางเงือกทอง -->
+  <g transform="translate(196 262)">
+    <ellipse cx="22" cy="84" rx="44" ry="11" fill="#8C8A7A"/>
+    <path d="M6 82 Q-2 54 16 40 Q20 30 26 26 Q34 34 30 46 Q44 58 40 74 Q48 70 54 76 Q46 86 34 84 Q30 76 24 70 Q20 80 14 84Z" fill="#E0A526"/>
+    <circle cx="26" cy="18" r="9" fill="#E0A526"/>
+    <path d="M18 14 Q14 30 20 36" fill="none" stroke="#B9800F" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- เรือ -->
+  <g transform="translate(540 330)">
+    <path d="M0 40 H60 L50 54 H10Z" fill="#B5472F"/>
+    <rect x="29" y="0" width="2" height="40" fill="#10313A"/>
+    <path d="M32 2 L56 34 H32Z" fill="#FBF3D5"/>
+  </g>
+</svg>

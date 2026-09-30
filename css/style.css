@@ -1,0 +1,257 @@
+/* ============================================================
+   ไปสงขลา — style.css
+   จานสี: แรงบันดาลใจจากตึกแถวเมืองเก่า (เหลืองปูนฉาบ / น้ำเงินบานเกล็ด) + ทะเลสาบสงขลา
+   ============================================================ */
+:root {
+  --bg: #EAF3F1;
+  --paper: #FFFFFF;
+  --ink: #10313A;
+  --muted: #4B6870;
+  --line: #C8DAD6;
+  --sea: #14808B;
+  --deep: #0B4F5C;
+  --plaster: #F4C95D;
+  --plaster-soft: #FBEFC8;
+  --shutter: #2F5D9E;
+  --coral: #E2553B;
+  --ok: #2E7D4F;
+  --radius: 14px;
+  --font-head: "Mitr", "Noto Sans Thai", Tahoma, sans-serif;
+  --font-body: "Noto Sans Thai", "Sarabun", system-ui, Tahoma, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0C2228; --paper: #12333B; --ink: #E6F2F0; --muted: #9DBBC0; --line: #25505A;
+    --plaster-soft: #3A3318; --deep: #7FC4C8; --sea: #4FB3BD;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-padding-top: 90px; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 400 16px/1.7 var(--font-body);
+}
+h1, h2, h3 { font-family: var(--font-head); font-weight: 500; line-height: 1.3; margin: 0 0 .5em; }
+h1 { font-size: clamp(2rem, 4.6vw, 3.2rem); letter-spacing: -.01em; }
+h2 { font-size: clamp(1.35rem, 2.6vw, 1.75rem); }
+h3 { font-size: 1.1rem; }
+p { margin: 0 0 1em; max-width: 68ch; }
+a { color: var(--shutter); }
+code, pre { font-family: ui-monospace, "Cascadia Code", Menlo, Consolas, monospace; }
+:focus-visible { outline: 3px solid var(--plaster); outline-offset: 2px; border-radius: 6px; }
+
+.wrap { width: min(1120px, 100% - 32px); margin-inline: auto; }
+section.block { margin: 40px 0; }
+.muted { color: var(--muted); }
+.small { font-size: .88rem; }
+
+/* ---------- แถบบน + ตัวบอกขั้นตอน ---------- */
+.topbar {
+  position: sticky; top: 0; z-index: 20;
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.topbar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 10px 0; flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+.brand img { width: 44px; height: 44px; }
+.brand b { font: 500 1.35rem/1 var(--font-head); display: block; }
+.brand small { color: var(--muted); font-size: .78rem; }
+.steps { display: flex; gap: 6px; list-style: none; margin: 0; padding: 0; flex-wrap: wrap; }
+.steps a {
+  display: flex; align-items: center; gap: 8px; padding: 6px 14px 6px 6px;
+  border-radius: 999px; text-decoration: none; color: var(--muted); font-size: .92rem;
+  border: 1px solid transparent;
+}
+.steps .n {
+  width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--line); color: var(--ink); font: 500 .85rem var(--font-head);
+}
+.steps a[aria-current="page"] { background: var(--deep); color: #fff; }
+.steps a[aria-current="page"] .n { background: var(--plaster); color: #10313A; }
+.steps a[aria-disabled="true"] { opacity: .45; pointer-events: none; }
+.steps a:not([aria-current]):not([aria-disabled]):hover { border-color: var(--line); background: var(--paper); }
+
+/* ---------- Hero ---------- */
+.hero { display: grid; grid-template-columns: 1.05fr .95fr; gap: 28px; align-items: center; padding: 34px 0 10px; }
+.hero h1 { color: var(--deep); }
+.hero .lead { font-size: 1.1rem; color: var(--muted); }
+.hero img { width: 100%; height: auto; border-radius: 28px; display: block; box-shadow: 0 24px 40px -24px rgba(11,79,92,.45); }
+.pagehead { padding: 26px 0 6px; }
+.pagehead .lead { color: var(--muted); }
+
+/* ---------- การ์ดและปุ่ม ---------- */
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
+.card.flat { box-shadow: none; }
+.btn {
+  appearance: none; border: 0; cursor: pointer; font: 500 1rem var(--font-body);
+  padding: 12px 22px; border-radius: 12px; background: var(--deep); color: #fff; text-decoration: none;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+}
+.btn:hover { background: #083c47; }
+.btn:disabled, .btn[aria-disabled="true"] { background: var(--line); color: var(--muted); cursor: not-allowed; pointer-events: none; }
+.btn.ghost { background: transparent; color: var(--deep); border: 1.5px solid var(--deep); }
+.btn.ghost:hover { background: var(--plaster-soft); }
+.btn.gold { background: var(--plaster); color: #10313A; }
+.btn.gold:hover { background: #e8b93e; }
+.btn.small { padding: 7px 14px; font-size: .9rem; border-radius: 10px; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  border: 1px solid var(--line); background: var(--paper); color: var(--ink); cursor: pointer;
+  border-radius: 999px; padding: 5px 14px; font: 400 .9rem var(--font-body);
+}
+.chip:hover { background: var(--plaster-soft); border-color: var(--plaster); }
+.badge { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: .8rem; font-weight: 500; background: var(--plaster); color: #10313A; }
+.badge.sea { background: var(--sea); color: #fff; }
+.badge.coral { background: var(--coral); color: #fff; }
+.badge.line { background: var(--line); color: var(--ink); }
+
+/* ---------- ฟอร์มค้นหา ---------- */
+.search { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: stretch; }
+.field {
+  text-align: left; cursor: pointer; background: var(--bg); border: 1.5px solid var(--line);
+  border-radius: 12px; padding: 12px 16px; font: inherit; color: var(--ink);
+  display: grid; gap: 2px;
+}
+.field:hover { border-color: var(--sea); }
+.field .lbl { font-size: .8rem; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+.field .dot { width: 10px; height: 10px; border-radius: 50%; }
+.field .dot.a { background: var(--shutter); }
+.field .dot.b { background: var(--coral); }
+.field .val { font-weight: 500; }
+.field .val.empty { color: var(--muted); font-weight: 400; }
+.swap { align-self: center; width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--line); background: var(--paper); cursor: pointer; font-size: 1.2rem; color: var(--deep); }
+.swap:hover { background: var(--plaster-soft); }
+.search-foot { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+
+/* ---------- หน้าต่างเลือกสถานที่ (ไล่ระดับตาม Tree) ---------- */
+dialog.picker { border: 0; border-radius: 18px; padding: 0; width: min(520px, 94vw); max-height: 86vh; background: var(--paper); color: var(--ink); box-shadow: 0 30px 60px -20px rgba(0,0,0,.5); }
+dialog.picker::backdrop { background: rgba(10, 35, 42, .55); }
+.picker-head { padding: 18px 20px 10px; border-bottom: 1px solid var(--line); position: sticky; top: 0; background: var(--paper); }
+.picker-head .row { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.crumbs { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; font-size: .88rem; }
+.crumbs button { border: 0; background: var(--plaster-soft); color: var(--ink); padding: 2px 10px; border-radius: 999px; cursor: pointer; font: inherit; }
+.crumbs button:last-child { background: var(--deep); color: #fff; }
+.crumbs span { color: var(--muted); }
+.picker-list { list-style: none; margin: 0; padding: 10px; overflow: auto; max-height: 56vh; display: grid; gap: 6px; }
+.picker-list button { width: 100%; text-align: left; cursor: pointer; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); font: inherit; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.picker-list button:hover { border-color: var(--sea); background: var(--plaster-soft); }
+.picker-list .sub { display: block; color: var(--muted); font-size: .85rem; }
+.picker-foot { padding: 10px 20px 16px; font-size: .88rem; color: var(--muted); border-top: 1px solid var(--line); }
+
+/* ---------- Tree ---------- */
+.treebox { overflow-x: auto; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); }
+.treebox svg { display: block; min-width: 880px; width: 100%; height: auto; }
+.tnode rect { fill: var(--bg); stroke: var(--line); stroke-width: 1.5; }
+.tnode text { font: 400 13.5px var(--font-body); fill: var(--ink); pointer-events: none; }
+.tnode { cursor: pointer; }
+.tnode.root rect { fill: var(--plaster); stroke: #c49a1d; }
+.tnode.root text { fill: #10313A; font-weight: 500; }
+.tnode.parent rect { fill: #D3E9EA; stroke: var(--sea); }
+.tnode.parent text { color: #10313A; fill: #10313A; }
+.tnode.leaf rect { fill: var(--paper); stroke: var(--coral); }
+.tnode.onpath rect { stroke-width: 3; stroke: var(--shutter); }
+.tnode.selected rect { stroke-width: 3; stroke: var(--deep); fill: var(--plaster-soft); }
+.tnode.selected text { fill: #10313A; }
+.tnode.visited rect { fill: var(--shutter); stroke: var(--shutter); }
+.tnode.visited text { fill: #fff; }
+.tlink { fill: none; stroke: var(--line); stroke-width: 2; }
+.tlink.onpath { stroke: var(--shutter); stroke-width: 3.5; }
+.tnum circle { fill: var(--coral); }
+.tnum text { fill: #fff; font: 500 11px var(--font-body); text-anchor: middle; }
+.tlevel text { font: 500 12px var(--font-body); fill: var(--muted); }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: .88rem; color: var(--muted); margin-bottom: 12px; }
+.legend i { display: inline-block; width: 14px; height: 14px; border-radius: 4px; vertical-align: -2px; margin-right: 6px; border: 2px solid; }
+.twocol { display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px; align-items: start; }
+.infolist { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.infolist li { display: flex; gap: 10px; }
+.infolist b { min-width: 92px; color: var(--muted); font-weight: 500; }
+.seq { font-size: .92rem; background: var(--bg); border-radius: 10px; padding: 10px 14px; min-height: 48px; margin-top: 12px; }
+.pathline { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.pathline .v { background: var(--plaster-soft); border: 1px solid var(--plaster); padding: 2px 12px; border-radius: 999px; font-size: .92rem; }
+.pathline .v.end { background: var(--coral); border-color: var(--coral); color: #fff; }
+.pathline .v.start { background: var(--shutter); border-color: var(--shutter); color: #fff; }
+.pathline .arrow { color: var(--muted); }
+
+/* ---------- การ์ดเส้นทาง ---------- */
+.routebar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.routebar .cities { font: 500 1.2rem var(--font-head); }
+.routes { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; }
+.route { display: flex; flex-direction: column; gap: 12px; position: relative; border-top: 6px solid var(--sea); }
+.route.fast { border-top-color: var(--coral); }
+.route.cheap { border-top-color: var(--ok); }
+.route.best { border-top-color: var(--plaster); }
+.route .badges { display: flex; gap: 6px; flex-wrap: wrap; }
+.kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.kpi { background: var(--bg); border-radius: 10px; padding: 8px 10px; }
+.kpi b { display: block; font: 500 1.25rem/1.2 var(--font-head); }
+.kpi span { font-size: .78rem; color: var(--muted); }
+.legchips { display: flex; flex-wrap: wrap; gap: 6px; }
+.leg-chip { border-left: 5px solid; background: var(--bg); padding: 3px 10px; border-radius: 6px; font-size: .85rem; }
+.route .go { margin-top: auto; }
+
+/* ---------- ตาราง Dijkstra / ตั๋ว ---------- */
+.tablewrap { overflow: auto; max-height: 420px; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); }
+table { border-collapse: collapse; width: 100%; font-size: .9rem; }
+th, td { padding: 8px 12px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+thead th { position: sticky; top: 0; background: var(--deep); color: #fff; font-weight: 500; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+tr.done td { background: var(--plaster-soft); font-weight: 500; }
+tfoot td { font-weight: 600; background: var(--bg); }
+.tabs { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
+.tabs button { cursor: pointer; border: 1.5px solid var(--line); background: var(--paper); color: var(--ink); padding: 6px 16px; border-radius: 999px; font: 400 .92rem var(--font-body); }
+.tabs button[aria-selected="true"] { background: var(--deep); color: #fff; border-color: var(--deep); }
+pre.code { background: #0F2A30; color: #DCEFEA; padding: 16px 18px; border-radius: 12px; overflow: auto; font-size: .84rem; line-height: 1.6; margin: 0; max-height: 380px; }
+.defs { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.defs .card { padding: 16px 18px; }
+.defs h3 { margin-bottom: .3em; }
+
+/* ---------- ขั้นตอนเดินทาง ---------- */
+.legs { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.legs li.leg { display: grid; grid-template-columns: 54px 1fr auto; gap: 14px; padding: 14px 0; align-items: start; }
+.legs .ico { width: 54px; height: 54px; border-radius: 14px; display: grid; place-items: center; font-size: 1.6rem; color: #fff; }
+.legs .meta { text-align: right; font-variant-numeric: tabular-nums; }
+.legs .meta b { display: block; font: 500 1.05rem var(--font-head); }
+.legs li.swap-row { border-top: 1px dashed var(--line); border-bottom: 1px dashed var(--line); margin: 2px 0; padding: 6px 0 6px 68px; font-size: .88rem; color: var(--muted); }
+.mapbox { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px; }
+.mapbox svg { width: 100%; height: auto; display: block; }
+.maplegend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .86rem; color: var(--muted); padding: 8px 6px 0; }
+.maplegend i { display: inline-block; width: 22px; height: 5px; border-radius: 3px; vertical-align: middle; margin-right: 6px; }
+.maptools { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; margin-bottom: 10px; }
+.maptools label { cursor: pointer; font-size: .92rem; display: flex; gap: 6px; align-items: center; }
+.explore { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 12px; }
+.layers { display: grid; gap: 6px; margin-top: 10px; font-size: .92rem; }
+
+/* ---------- ตั๋ว ---------- */
+.ticket { display: grid; grid-template-columns: 1fr 230px; border-radius: 18px; overflow: hidden; background: var(--paper); border: 2px solid var(--deep); max-width: 760px; }
+.ticket .main { padding: 22px 26px; background: linear-gradient(135deg, var(--plaster-soft), var(--paper) 60%); }
+.ticket .stub { padding: 22px; border-left: 3px dashed var(--deep); display: grid; place-items: center; text-align: center; gap: 8px; background: var(--paper); }
+.ticket .code { font: 500 1.3rem var(--font-head); letter-spacing: .08em; }
+.ticket canvas { width: 168px; height: 168px; image-rendering: pixelated; border: 6px solid #fff; outline: 1px solid var(--line); }
+.notice { background: var(--plaster-soft); border-left: 5px solid var(--plaster); padding: 10px 16px; border-radius: 8px; font-size: .92rem; }
+.checks { color: var(--ok); font-weight: 500; }
+[hidden] { display: none !important; }
+
+.site-foot { margin-top: 56px; padding: 28px 0 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
+.empty-state { text-align: center; padding: 48px 20px; }
+
+@media (max-width: 860px) {
+  .hero, .twocol { grid-template-columns: 1fr; }
+  .search { grid-template-columns: 1fr; }
+  .swap { justify-self: center; transform: rotate(90deg); }
+  .ticket { grid-template-columns: 1fr; }
+  .ticket .stub { border-left: 0; border-top: 3px dashed var(--deep); }
+  .legs li.leg { grid-template-columns: 46px 1fr; }
+  .legs .meta { grid-column: 2; text-align: left; }
+  .steps a span.t { display: none; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero img { animation: drift 1s ease-out both; }
+  @keyframes drift { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+}
+@media print {
+  .topbar, .site-foot, .noprint { display: none !important; }
+  body { background: #fff; }
+}

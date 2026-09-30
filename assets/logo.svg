@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="โลโก้ไปสงขลา">
+  <circle cx="32" cy="32" r="30" fill="#0B4F5C"/>
+  <circle cx="42" cy="22" r="8" fill="#F4C95D"/>
+  <!-- เจดีย์บนเขาตังกวน -->
+  <path d="M14 40 Q22 24 32 40Z" fill="#14808B"/>
+  <path d="M21 31 L23 25 L25 31Z" fill="#FBF3D5"/>
+  <rect x="22.6" y="22" width="0.8" height="3" fill="#FBF3D5"/>
+  <!-- คลื่น -->
+  <path d="M8 42 q6 -5 12 0 t12 0 t12 0 t12 0" fill="none" stroke="#FBF3D5" stroke-width="3" stroke-linecap="round"/>
+  <path d="M8 50 q6 -5 12 0 t12 0 t12 0 t12 0" fill="none" stroke="#7FC4C8" stroke-width="3" stroke-linecap="round"/>
+</svg>

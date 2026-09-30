@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>รายละเอียดการเดินทาง — ไปสงขลา</title>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@400;500&family=Noto+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="shell-header" class="topbar"></header>
+
+  <main class="wrap">
+    <div class="pagehead">
+      <h1>รายละเอียดการเดินทาง</h1>
+      <div class="card routebar" id="routebar"></div>
+    </div>
+
+    <div id="empty" class="card empty-state block" hidden>
+      <h2>ยังไม่มีเส้นทางให้แสดง</h2>
+      <p style="margin-inline:auto">เลือกต้นทางและปลายทางที่หน้าค้นหาก่อน</p>
+      <a class="btn gold" href="index.html">ไปหน้าค้นหา</a>
+    </div>
+
+    <div id="content">
+      <section class="block twocol" style="grid-template-columns:1fr 1.2fr">
+        <div class="card">
+          <div class="tabs" id="rtabs" role="tablist" aria-label="เกณฑ์เส้นทาง"></div>
+          <h2>ขั้นตอนเดินทางทีละช่วง</h2>
+          <ol class="legs" id="legs"></ol>
+          <div class="kpis" id="totals" style="margin-top:14px"></div>
+          <div style="margin-top:18px" class="noprint"><a class="btn gold" id="buy" href="#">ไปหน้าตั๋ว</a></div>
+        </div>
+        <div>
+          <div class="maptools noprint">
+            <label><input type="checkbox" id="wt"> แสดงน้ำหนัก Edge (เวลา · ค่าโดยสาร)</label>
+          </div>
+          <div class="mapbox"><svg id="map"></svg><div class="maplegend" id="mapLegend"></div></div>
+        </div>
+      </section>
+
+      <section class="block" aria-labelledby="p-h">
+        <h2 id="p-h">Path ของเส้นทางนี้</h2>
+        <div class="card">
+          <div class="pathline" id="pathline" style="margin-bottom:12px"></div>
+          <p class="small" id="pathtext" style="margin:0"></p>
+          <details style="margin-top:12px">
+            <summary class="small">ดู Path ในกราฟสถานะที่ Dijkstra คำนวณจริง (v0, v1, …, vk)</summary>
+            <pre class="code" id="statepath" style="margin-top:10px"></pre>
+          </details>
+        </div>
+      </section>
+
+      <section class="block" aria-labelledby="e-h">
+        <h2 id="e-h">สำรวจเมืองด้วย BFS และ DFS</h2>
+        <p>ลองท่องกราฟจากต้นทางเพื่อดูว่าแต่ละวิธีเยี่ยมสถานที่ตามลำดับต่างกันอย่างไร
+          เลขสีแดงคือลำดับที่ถูกเยี่ยม และเส้นน้ำเงินหนาคือต้นไม้ของการท่อง (BFS/DFS tree)</p>
+        <div class="explore noprint">
+          <button class="btn small" type="button" data-ex="bfs">เริ่ม BFS</button>
+          <button class="btn small ghost" type="button" data-ex="dfs">เริ่ม DFS</button>
+          <button class="btn small ghost" type="button" data-ex="reset">ล้าง</button>
+        </div>
+        <div class="twocol">
+          <div class="mapbox"><svg id="map2"></svg></div>
+          <div class="card" aria-live="polite">
+            <h3 id="exTitle">ยังไม่ได้เริ่มท่องกราฟ</h3>
+            <div id="exOut" class="layers small muted">กดปุ่ม "เริ่ม BFS" หรือ "เริ่ม DFS"</div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer id="shell-footer" class="site-foot"></footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/algorithms.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/detail.js"></script>
+</body>
+</html>
